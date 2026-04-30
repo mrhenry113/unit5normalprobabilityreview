@@ -13,69 +13,53 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100%;width:100%;overflow-x:hidden;}
 
-/* ── PASSWORD SCREEN ── */
-#pw-screen{
+/* ── NAME SCREEN ── */
+#name-screen{
   position:fixed;inset:0;background:var(--bg);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   z-index:999;padding:20px;
 }
-.pw-card{
+.name-card{
   background:linear-gradient(160deg,#243018,#1a2c10);
   border:2px solid var(--border);border-radius:18px;
-  padding:clamp(22px,5vw,38px) clamp(18px,5vw,44px);
-  width:100%;max-width:420px;
+  padding:clamp(24px,6vw,42px) clamp(20px,6vw,48px);
+  width:100%;max-width:400px;
   box-shadow:0 8px 40px rgba(0,0,0,.7);
-  display:flex;flex-direction:column;align-items:center;gap:13px;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
   animation:fadeUp .4s ease;
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.pw-icon{font-size:2.6rem;line-height:1;filter:drop-shadow(0 0 10px rgba(126,200,80,.4));}
-.pw-title{font-size:clamp(1rem,4vw,1.35rem);font-weight:900;text-align:center;line-height:1.25;}
-.pw-title em{color:var(--accent);font-style:normal;}
-.pw-sub{font-size:0.8rem;color:var(--muted);text-align:center;line-height:1.55;}
-.pw-divider{width:100%;height:1px;background:var(--border);}
+.name-icon{font-size:2.8rem;filter:drop-shadow(0 0 10px rgba(126,200,80,.4));}
+.name-title{font-size:clamp(1rem,4vw,1.35rem);font-weight:900;text-align:center;line-height:1.3;}
+.name-title em{color:var(--accent);font-style:normal;}
+.name-sub{font-size:0.82rem;color:var(--muted);text-align:center;line-height:1.55;}
+.name-divider{width:100%;height:1px;background:var(--border);}
 
-.pw-field{width:100%;display:flex;flex-direction:column;gap:5px;}
-.pw-label{font-size:0.7rem;color:var(--muted);font-weight:700;letter-spacing:.8px;text-transform:uppercase;}
-.pw-input{
-  width:100%;padding:11px 14px;
+.name-field{width:100%;display:flex;flex-direction:column;gap:5px;}
+.name-label{font-size:0.7rem;color:var(--muted);font-weight:700;letter-spacing:.8px;text-transform:uppercase;}
+#name-input{
+  width:100%;padding:12px 14px;
   background:#172510;border:2px solid var(--border);
-  border-radius:10px;color:var(--text);font-size:0.95rem;
+  border-radius:10px;color:var(--text);font-size:1rem;
   font-family:inherit;outline:none;transition:border-color .2s;
 }
-.pw-input:focus{border-color:var(--accent);}
-.pw-input.shake{animation:shake .35s ease;border-color:#e05555!important;}
+#name-input:focus{border-color:var(--accent);}
+#name-input.shake{animation:shake .35s ease;border-color:#e05555!important;}
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
 
-.pw-pass-wrap{width:100%;position:relative;}
-#pw-pass{padding-right:44px;}
-.pw-toggle{
-  position:absolute;right:10px;top:50%;transform:translateY(-50%);
-  background:none;border:none;cursor:pointer;color:var(--muted);
-  font-size:1rem;padding:4px;transition:color .2s;
-}
-.pw-toggle:hover{color:var(--accent);}
-
-#pw-btn{
-  width:100%;padding:12px;
+#start-btn{
+  width:100%;padding:13px;
   background:linear-gradient(135deg,#2d5016,#4a8022);
   border:2px solid var(--accent);border-radius:10px;
   color:var(--text);font-size:1rem;font-weight:800;
   cursor:pointer;letter-spacing:.4px;transition:all .2s;font-family:inherit;
-  display:flex;align-items:center;justify-content:center;gap:8px;
 }
-#pw-btn:hover:not(:disabled){background:var(--accent);color:#1a2410;transform:translateY(-1px);box-shadow:0 4px 16px rgba(126,200,80,.3);}
-#pw-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
-
-#pw-status{
-  font-size:0.82rem;min-height:18px;text-align:center;
-  font-style:italic;transition:all .2s;
+#start-btn:hover:not(:disabled){
+  background:var(--accent);color:#1a2410;
+  transform:translateY(-1px);box-shadow:0 4px 16px rgba(126,200,80,.3);
 }
-#pw-status.err{color:#e07755;}
-#pw-status.ok{color:var(--accent);}
-#pw-status.loading{color:var(--muted);}
-
-.pw-hint{font-size:0.7rem;color:#3a5a22;text-align:center;border-top:1px solid var(--border);padding-top:10px;width:100%;}
+#start-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+#name-status{font-size:0.8rem;color:#e07755;min-height:16px;text-align:center;font-style:italic;}
 
 /* ── QUIZ ── */
 #quiz-wrap{display:none;}
@@ -89,11 +73,11 @@ html,body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-u
 #hdr h1{font-size:clamp(0.78rem,2.8vw,1.05rem);font-weight:800;line-height:1.2;}
 #hdr h1 em{color:var(--accent);font-style:normal;}
 #hdr-right{display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;}
-#student-name-badge{
+#student-badge{
   font-size:0.75rem;color:var(--gold);
   background:rgba(201,169,79,.1);padding:3px 10px;
   border-radius:12px;border:1px solid rgba(201,169,79,.25);
-  white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis;
 }
 #score{
   font-size:clamp(0.7rem,2.2vw,0.85rem);color:var(--gold);font-weight:700;
@@ -103,17 +87,15 @@ html,body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-u
 #reset-btn{
   background:transparent;border:2px solid var(--accent);color:var(--accent);
   padding:4px 12px;border-radius:20px;cursor:pointer;
-  font-size:clamp(0.68rem,2vw,0.82rem);font-weight:700;transition:all .2s;white-space:nowrap;
+  font-size:clamp(0.68rem,2vw,0.82rem);font-weight:700;
+  transition:all .2s;white-space:nowrap;
 }
 #reset-btn:hover{background:var(--accent);color:#1a2410;}
 
 #prog-wrap{background:#111a0a;height:5px;}
 #prog{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0%;transition:width .5s ease;}
 
-#wrap{
-  display:flex;flex-direction:column;gap:12px;
-  padding:12px;max-width:1100px;margin:0 auto;width:100%;
-}
+#wrap{display:flex;flex-direction:column;gap:12px;padding:12px;max-width:1100px;margin:0 auto;width:100%;}
 #rpanel{width:100%;}
 #rbox{
   position:relative;width:100%;max-width:340px;margin:0 auto;
@@ -215,34 +197,20 @@ html,body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-u
 </head>
 <body>
 
-<!-- PASSWORD SCREEN -->
-<div id="pw-screen">
-  <div class="pw-card">
-    <div class="pw-icon">&#x26A1;</div>
-    <div class="pw-title">Unit 5 Quiz Review:<br><em>Catch &#8217;Em All</em></div>
-    <div class="pw-sub">Enter your name and the password<br>your teacher gave you to begin.</div>
-    <div class="pw-divider"></div>
-
-    <div class="pw-field">
-      <div class="pw-label">&#x1F9D1; Your Full Name</div>
-      <input class="pw-input" id="pw-name" type="text" placeholder="First and Last Name"
+<!-- NAME SCREEN -->
+<div id="name-screen">
+  <div class="name-card">
+    <div class="name-icon">&#x26A1;</div>
+    <div class="name-title">Unit 5 Quiz Review:<br><em>Catch &#8217;Em All</em></div>
+    <div class="name-sub">Enter your name to begin.<br>Your teacher will see when you start.</div>
+    <div class="name-divider"></div>
+    <div class="name-field">
+      <div class="name-label">&#x1F9D1; Your Full Name</div>
+      <input id="name-input" type="text" placeholder="First and Last Name"
              autocomplete="off" spellcheck="false" />
     </div>
-
-    <div class="pw-field">
-      <div class="pw-label">&#x1F512; Password</div>
-      <div class="pw-pass-wrap">
-        <input class="pw-input" id="pw-pass" type="text"
-               placeholder="Enter password..."
-               autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-               style="letter-spacing:2px;" />
-        <button class="pw-toggle" id="pw-toggle" title="Show/hide">&#128065;</button>
-      </div>
-    </div>
-
-    <div id="pw-status"></div>
-    <button id="pw-btn">&#x26A1; Start Quiz</button>
-    <div class="pw-hint">&#x1F512; Ask your teacher for the password.</div>
+    <div id="name-status"></div>
+    <button id="start-btn">&#x26A1; Start Quiz</button>
   </div>
 </div>
 
@@ -251,13 +219,12 @@ html,body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-u
   <div id="hdr">
     <h1>Unit 5 Quiz Review: <em>Catch &#8217;Em All</em> &#x26A1;</h1>
     <div id="hdr-right">
-      <div id="student-name-badge"></div>
+      <div id="student-badge"></div>
       <div id="score">Score: 0 / 37</div>
       <button id="reset-btn">&#x21BA; Reset</button>
     </div>
   </div>
   <div id="prog-wrap"><div id="prog"></div></div>
-
   <div id="wrap">
     <div id="rpanel">
       <div id="rbox">
@@ -300,86 +267,41 @@ let st = {
   tmap:[], vis:new Array(NTILES).fill(true), score:0
 };
 
-// ── PASSWORD ──────────────────────────────────────────────────────────────────
-const pwName   = document.getElementById('pw-name');
-const pwPass   = document.getElementById('pw-pass');
-const pwBtn    = document.getElementById('pw-btn');
-const pwStatus = document.getElementById('pw-status');
-const pwToggle = document.getElementById('pw-toggle');
-let   pwShown  = false;
+// ── NAME / LOG ────────────────────────────────────────────────────────────────
+const nameInput  = document.getElementById('name-input');
+const startBtn   = document.getElementById('start-btn');
+const nameStatus = document.getElementById('name-status');
 
-pwToggle.addEventListener('click', () => {
-  pwShown = !pwShown;
-  pwPass.style.letterSpacing = pwShown ? '1px' : '2px';
-  pwPass.style.webkitTextSecurity = pwShown ? 'none' : '';
-  pwToggle.textContent = pwShown ? '🙈' : '👁';
-  // fallback for browsers that don't support webkitTextSecurity
-  pwPass.type = pwShown ? 'text' : 'password';
-});
-// Start as password type
-pwPass.type = 'password';
+function logToSheet(name) {
+  // Use no-cors image trick — most reliable way to fire-and-forget to Apps Script
+  const url = SCRIPT_URL + '?name=' + encodeURIComponent(name) + '&t=' + Date.now();
+  const img = new Image();
+  img.src = url;
+}
 
-async function tryUnlock() {
-  const name = pwName.value.trim();
-  const pass = pwPass.value.trim();
-
+function startQuiz() {
+  const name = nameInput.value.trim();
   if (!name) {
-    pwStatus.textContent = 'Please enter your name.';
-    pwStatus.className = 'err';
-    pwName.focus(); return;
+    nameStatus.textContent = 'Please enter your name to continue.';
+    nameInput.classList.remove('shake');
+    void nameInput.offsetWidth;
+    nameInput.classList.add('shake');
+    setTimeout(() => nameInput.classList.remove('shake'), 400);
+    nameInput.focus();
+    return;
   }
-  if (!pass) {
-    pwStatus.textContent = 'Please enter the password.';
-    pwStatus.className = 'err';
-    pwPass.focus(); return;
-  }
-
-  pwBtn.disabled = true;
-  pwStatus.textContent = '⏳ Checking...';
-  pwStatus.className = 'loading';
-
-  try {
-    const url = `${SCRIPT_URL}?pw=${encodeURIComponent(pass.toLowerCase())}&name=${encodeURIComponent(name)}`;
-    const res  = await fetch(url);
-    const data = await res.json();
-
-    if (data.result === 'ok') {
-      pwStatus.textContent = '✓ Welcome, ' + name + '!';
-      pwStatus.className = 'ok';
-      studentName = name;
-      setTimeout(() => {
-        document.getElementById('pw-screen').style.display = 'none';
-        document.getElementById('quiz-wrap').style.display  = 'block';
-        document.getElementById('student-name-badge').textContent = '👤 ' + name;
-        initTiles(); buildGrid(); render();
-      }, 700);
-    } else {
-      pwStatus.textContent = '✗ Incorrect password — try again!';
-      pwStatus.className = 'err';
-      pwPass.value = '';
-      pwPass.classList.remove('shake');
-      void pwPass.offsetWidth;
-      pwPass.classList.add('shake');
-      setTimeout(() => pwPass.classList.remove('shake'), 400);
-      pwBtn.disabled = false;
-      pwPass.focus();
-    }
-  } catch(e) {
-    pwStatus.textContent = '⚠ Connection error — check your internet and try again.';
-    pwStatus.className = 'err';
-    pwBtn.disabled = false;
-  }
+  studentName = name;
+  logToSheet(name);
+  document.getElementById('name-screen').style.display = 'none';
+  document.getElementById('quiz-wrap').style.display   = 'block';
+  document.getElementById('student-badge').textContent = '👤 ' + name;
+  initTiles(); buildGrid(); render();
 }
 
-pwBtn.addEventListener('click', tryUnlock);
-[pwName, pwPass].forEach(el => el.addEventListener('keydown', e => { if(e.key==='Enter') tryUnlock(); }));
+startBtn.addEventListener('click', startQuiz);
+nameInput.addEventListener('keydown', e => { if (e.key === 'Enter') startQuiz(); });
 
-// ── QUIZ ──────────────────────────────────────────────────────────────────────
-function shuffle(a) {
-  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
-  return a;
-}
-
+// ── BELL CURVE ────────────────────────────────────────────────────────────────
 function makeBellSVG(cfg) {
   const W=260,H=110,pad=22,baseline=H-20;
   const xMin=-3.5,xMax=3.5;
@@ -421,23 +343,24 @@ function makeBellSVG(cfg) {
     ${lines}${ticks}</svg>`;
 }
 
-function initTiles() {
+// ── TILES ─────────────────────────────────────────────────────────────────────
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function initTiles(){
   const base=Math.floor(NTILES/NQ),extra=NTILES-base*NQ;
   const all=shuffle([...Array(NTILES).keys()]);
   let idx=0;st.tmap=[];
   for(let i=0;i<NQ;i++){const n=i<extra?base+1:base;st.tmap.push(all.slice(idx,idx+n));idx+=n;}
 }
-
-function buildGrid() {
-  const g=document.getElementById('tgrid');
-  if(!g)return;g.innerHTML='';
+function buildGrid(){
+  const g=document.getElementById('tgrid');if(!g)return;g.innerHTML='';
   for(let i=0;i<NTILES;i++){
     const t=document.createElement('div');t.className='tile';t.id='t'+i;
     if(!st.vis[i])t.classList.add('gone');g.appendChild(t);
   }
 }
 
-function buildDots() {
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function buildDots(){
   const el=document.getElementById('dots');if(!el)return;el.innerHTML='';
   for(let i=0;i<NQ;i++){
     const d=document.createElement('div');
@@ -450,7 +373,7 @@ function buildDots() {
   if(active)active.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
 }
 
-function render() {
+function render(){
   buildDots();
   const q=QS[st.cur];
   const metaEl=document.getElementById('qmeta');metaEl.innerHTML='';
@@ -475,17 +398,14 @@ function render() {
   document.getElementById('prog').style.width=(st.score/NQ*100)+'%';
 }
 
-function pick(i,opt,btn) {
+function pick(i,opt,btn){
   const q=QS[st.cur];
   if(opt===q.a){
     btn.classList.add('cfx');
     document.getElementById('fb').textContent='✓ Correct! Tiles revealed!';
     st.done[st.cur]=true;st.score++;
     st.tmap[st.cur].forEach((ti,di)=>{
-      setTimeout(()=>{
-        const t=document.getElementById('t'+ti);
-        if(t)t.classList.add('gone');st.vis[ti]=false;
-      },di*35);
+      setTimeout(()=>{const t=document.getElementById('t'+ti);if(t)t.classList.add('gone');st.vis[ti]=false;},di*35);
     });
     buildDots();
     document.getElementById('score').textContent=`Score: ${st.score} / ${NQ}`;
@@ -504,8 +424,7 @@ document.getElementById('pbtn').addEventListener('click',()=>{if(st.cur>0){st.cu
 document.getElementById('nbtn').addEventListener('click',()=>{if(st.cur<NQ-1){st.cur++;render();}});
 document.getElementById('reset-btn').addEventListener('click',()=>{
   st={cur:0,done:new Array(NQ).fill(false),wrong:Array.from({length:NQ},()=>new Set()),tmap:[],vis:new Array(NTILES).fill(true),score:0};
-  initTiles();buildGrid();render();
-  document.getElementById('done').style.display='none';
+  initTiles();buildGrid();render();document.getElementById('done').style.display='none';
 });
 </script>
 </body>
